@@ -5,7 +5,7 @@ async function sendLogin(event) {
     password: event.target.password.value,
   };
 
-  const response = await fetch("http://localhost:5000/user", {
+  const response = await fetch("http://localhost:5000/login", {
     method: "post",
     mode: "cors",
     headers: {
@@ -14,5 +14,5 @@ async function sendLogin(event) {
     body: JSON.stringify(values),
   }).catch((err) => console.log(err));
 
-  console.log(response);
+  console.log(await response.json());
 }

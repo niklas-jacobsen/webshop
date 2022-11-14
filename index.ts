@@ -46,6 +46,12 @@ app.get("/register.js", (_req: Request, res: Response) => {
   res.send(js);
 });
 
+app.get("/login.js", (_req: Request, res: Response) => {
+  var js = fs.readFileSync("login.js", "utf-8");
+  res.setHeader("content-type", "text/javascript");
+  res.send(js);
+});
+
 app.listen(port, () => {
   console.log(`App running on port ${port}`);
 });
