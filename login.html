@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Log In</title>
+    <link rel="stylesheet" type="text/css" href="css/normalize.css" />
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+  </head>
+
+  <body>
+    <header>
+      <div>
+        <!-- <h1 style="display: inline">Webshop</h1> -->
+        <ul class="navbar">
+          <li class="navbar_item">Webshop</li>
+          <a href="/"><li class="navbar_item">Home</li></a>
+          <a href="/sale"><li class="navbar_item">Sale</li></a>
+          <a href="/account"><li class="navbar_item">Account</li></a>
+        </ul>
+      </div>
+    </header>
+
+    <div style="display: flex; justify-content: center; align-items: center; margin-top: 10%">
+      <form onsubmit="sendLogin(event)">
+        <div>
+          <input placeholder="E-Mail" type="email" name="email" id="email_input" required />
+        </div>
+        <div>
+          <input placeholder="Password" type="password" name="password" id="password_input" required />
+        </div>
+        <input type="submit" value="Login"></input>
+      </form>
+    </div>
+    <p style="display: flex; justify-content: center">
+      If you do not have an account yet you can click&nbsp;<a href="../register">here</a>
+    </p>
+  </body>
+  <script src="../login.js"></script>
+</html>
