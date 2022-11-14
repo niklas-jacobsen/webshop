@@ -30,6 +30,11 @@ app.get("/account", (_req: Request, res: Response) => {
   res.send(html);
 });
 
+app.get("/product", (_req: Request, res: Response) => {
+  var html = fs.readFileSync("product.html", "utf-8");
+  res.send(html);
+});
+
 app.get("/login", (_req: Request, res: Response) => {
   var html = fs.readFileSync("login.html", "utf-8");
   res.send(html);
