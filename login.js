@@ -14,5 +14,10 @@ async function sendLogin(event) {
     body: JSON.stringify(values),
   }).catch((err) => console.log(err));
 
-  console.log(await response.json());
+  if (response) {
+    const res = await response.json();
+    console.log(res);
+
+    setCookie("token", res.token, 0.5);
+  }
 }

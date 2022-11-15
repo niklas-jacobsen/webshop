@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Webshop</title>
+    <link rel="stylesheet" type="text/css" href="css/normalize.css" />
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+  </head>
+
+  <body>
+    <header>
+      <div>
+        <!-- <h1 style="display: inline">Webshop</h1> -->
+        <ul class="navbar">
+          <li class="navbar_item">Webshop</li>
+          <a href=""><li class="navbar_item active">Home</li></a>
+          <a href="/sale"><li class="navbar_item">Sale</li></a>
+          <a href="/account"><li class="navbar_item">Account</li></a>
+          <a href="/login"><li style="float: right" class="navbar_item">Log In</li></a>
+        </ul>
+      </div>
+    </header>
+
+    <ul id="items_list">
+      <% for(let i = 0; i < products.length; i++) { %>
+      <li>
+        <div class="item_box" id="<%= products[i].id %>" onclick="window.location='/products/<%= i + 1 %>';">
+          <h3 class="item_title"><%= products[i].name %></h3>
+          <div class="item_image_container">
+            <img class="item_image" src="<%= products[i].image_url %>" />
+          </div>
+          <!-- <p class="item_description"><%# products[i].description %></p> -->
+          <h4 class="item_price"><%= products[i].price %> €</h4>
+        </div>
+      </li>
+      <% } %>
+    </ul>
+    <footer></footer>
+  </body>
+</html>
