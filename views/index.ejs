@@ -1,9 +1,12 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Webshop</title>
-    <link rel="stylesheet" type="text/css" href="css/normalize.css" />
-    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <link rel="stylesheet" type="text/css" href="../css/normalize.css" />
+    <link rel="stylesheet" type="text/css" href="../css/style.css" />
   </head>
 
   <body>
@@ -13,9 +16,12 @@
         <ul class="navbar">
           <li class="navbar_item">Webshop</li>
           <a href=""><li class="navbar_item active">Home</li></a>
-          <a href="/sale"><li class="navbar_item">Sale</li></a>
           <a href="/account"><li class="navbar_item">Account</li></a>
+          <% if(token == null) { %>
           <a href="/login"><li style="float: right" class="navbar_item">Log In</li></a>
+          <% } else { %>
+          <a href="/logout"><li style="float: right" class="navbar_item">Log Out</li></a>
+          <% } %>
         </ul>
       </div>
     </header>
@@ -23,7 +29,7 @@
     <ul id="items_list">
       <% for(let i = 0; i < products.length; i++) { %>
       <li>
-        <div class="item_box" id="<%= products[i].id %>" onclick="window.location='/products/<%= i + 1 %>';">
+        <div class="item_box" id="<%= i %>" onclick="window.location='/item/<%= products[i].id %>';">
           <h3 class="item_title"><%= products[i].name %></h3>
           <div class="item_image_container">
             <img class="item_image" src="<%= products[i].image_url %>" />
@@ -36,4 +42,6 @@
     </ul>
     <footer></footer>
   </body>
+
+  <script src="/helpers/cookieHelper.js"></script>
 </html>

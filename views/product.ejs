@@ -4,11 +4,39 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Products</title>
+    <title><%= item.name %></title>
+    <link rel="stylesheet" type="text/css" href="../css/normalize.css" />
+    <link rel="stylesheet" type="text/css" href="../css/style.css" />
   </head>
   <body>
-    <% for(let i = 0; i < 10; i++){ %>
-    <p>Hallo, <%= user?.name?.first %></p>
-    <% } %>
+    <header>
+      <div>
+        <ul class="navbar">
+          <li class="navbar_item">Webshop</li>
+          <a href="/"><li class="navbar_item">Home</li></a>
+          <a href="/account"><li class="navbar_item">Account</li></a>
+          <% if(token == null) { %>
+          <a href="/login"><li style="float: right" class="navbar_item">Log In</li></a>
+          <% } else { %>
+          <a href="/logout"><li style="float: right" class="navbar_item">Log Out</li></a>
+          <% } %>
+        </ul>
+      </div>
+    </header>
+    <div style="display: grid; grid-template-columns: 1fr 1fr; height: 93.8vh">
+      <div style="display: flex; flex-flow: column; align-items: center">
+        <h2 style="margin-top: 25%"><%= item.name %></h2>
+        <h4 style="margin-bottom: 0px">Description</h4>
+        <p style="text-align: center; margin-top: 10px; margin-left: 20%; margin-right: 20%"><%= item.description %></p>
+        <p>In Stock: <%= item.stock %></p>
+        <h4><%= item.price %> €</h4>
+        <button>Add to cart</button>
+      </div>
+      <div style="display: flex; justify-content: center; align-items: center">
+        <div style="height: 420px; margin-right: 10%; overflow: hidden">
+          <img class="item_image" src="<%= item.image_url %> " />
+        </div>
+      </div>
+    </div>
   </body>
 </html>

@@ -19,5 +19,7 @@ async function sendLogin(event) {
     console.log(res);
 
     setCookie("token", res.token, 0.5);
+
+    window.location = "/";
   }
 }

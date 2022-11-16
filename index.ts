@@ -19,55 +19,56 @@ app.use(cors());
 // app.use("/product", hallo);
 app.set("view engine", "ejs");
 
-app.get("/", async (_req: Request, res: Response) => {
-  const response = await fetch("http://localhost:5000/products", {
+app.get("/", async (req: Request, res: Response) => {
+  const productList = await fetch("http://localhost:5000/products", {
     method: "get",
     mode: "cors",
     headers: {
-      "Content-Type": "application/json",
+      "Content-Type": "text/json",
     },
   }).catch((err) => console.log(err));
 
-  if (!response) return res.status(500).send("error");
+  if (!productList) return res.status(500).send("error");
 
   return res.render("index", {
-    products: await response.json(),
+    products: await productList.json(),
+    token: req.cookies?.token,
   });
 });
 
-app.get("/sale", (_req: Request, res: Response) => {
-  var html = fs.readFileSync("sale.html", "utf-8");
-  res.send(html);
+app.get("/account", (req: Request, res: Response) => {
+  res.render("account", {
+    token: req.cookies?.token,
+  });
 });
 
-app.get("/account", (_req: Request, res: Response) => {
-  var html = fs.readFileSync("account.html", "utf-8");
-  res.send(html);
-});
-
-app.get("/product", async (req: Request, res: Response) => {
-  const response = await fetch("http://localhost:5000/user/me", {
+app.get("/item/:id", async (req: Request, res: Response) => {
+  const itemById = await fetch("http://localhost:5000/products/" + req.params.id, {
     method: "get",
     mode: "cors",
     headers: {
-      "Content-Type": "application/json",
-      Authorization: "Bearer " + req.cookies?.token,
+      "Content-Type": "text/json",
     },
   }).catch((err) => console.log(err));
-  if (!response) return res.status(500).send("error");
+  if (!itemById) return res.status(500).send("error");
   return res.render("product", {
-    user: await response.json(),
+    item: await itemById.json(),
+    token: req.cookies?.token,
   });
 });
 
 app.get("/login", (_req: Request, res: Response) => {
-  var html = fs.readFileSync("login.html", "utf-8");
-  res.send(html);
+  res.render("login");
+});
+
+app.get("/logout", (_req: Request, res: Response) => {
+  res.clearCookie("token");
+  res.redirect("/");
+  res.end();
 });
 
 app.get("/register", (_req: Request, res: Response) => {
-  var html = fs.readFileSync("register.html", "utf-8");
-  res.send(html);
+  res.render("register");
 });
 
 app.get("/register.js", (_req: Request, res: Response) => {

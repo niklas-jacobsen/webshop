@@ -12,9 +12,12 @@
         <ul class="navbar">
           <li class="navbar_item">Webshop</li>
           <a href="/"><li class="navbar_item">Home</li></a>
-          <a href="/sale"><li class="navbar_item">Sale</li></a>
           <a href=""><li class="navbar_item active">Account</li></a>
+          <% if(token == null) { %>
           <a href="/login"><li style="float: right" class="navbar_item">Log In</li></a>
+          <% } else { %>
+          <a href="/logout"><li style="float: right" class="navbar_item">Log Out</li></a>
+          <% } %>
         </ul>
       </div>
     </header>
