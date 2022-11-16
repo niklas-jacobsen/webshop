@@ -8,7 +8,7 @@ async function sendRegistration(event) {
     password: event.target.password.value,
   };
 
-  const response = await fetch(backend_url + "register", {
+  const response = await fetch(backend_url + "/register", {
     method: "post",
     mode: "cors",
     headers: {
