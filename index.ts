@@ -6,7 +6,7 @@ const fs = require("fs");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const app = express();
-const port = 3000;
+const port = 80;
 
 // function hallo(_req: Request, res: Response) {
 //   let test = 10;
