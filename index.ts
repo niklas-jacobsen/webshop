@@ -7,6 +7,7 @@ const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const app = express();
 const port = process.env.PORT || 3000;
+require("dotenv").config();
 
 // function hallo(_req: Request, res: Response) {
 //   let test = 10;
@@ -20,7 +21,7 @@ app.use(cors());
 app.set("view engine", "ejs");
 
 app.get("/", async (req: Request, res: Response) => {
-  const productList = await fetch("http://localhost:5000/products", {
+  const productList = await fetch(process.env.BACKEND_URL + "/products", {
     method: "get",
     mode: "cors",
     headers: {
@@ -28,11 +29,13 @@ app.get("/", async (req: Request, res: Response) => {
     },
   }).catch((err) => console.log(err));
 
-  if (!productList) return res.status(500).send("error");
+  console.log(process.env.BACKEND_URL + "/products");
+
+  if (!productList) return res.status(404).send("Could not load products");
 
   return res.render("index", {
-    products: await productList.json(),
     token: req.cookies?.token,
+    products: await productList.json(),
   });
 });
 
@@ -43,22 +46,24 @@ app.get("/account", (req: Request, res: Response) => {
 });
 
 app.get("/item/:id", async (req: Request, res: Response) => {
-  const itemById = await fetch("http://localhost:5000/products/" + req.params.id, {
+  const itemById = await fetch(process.env.BACKEND_URL + "/products/" + req.params.id, {
     method: "get",
     mode: "cors",
     headers: {
       "Content-Type": "text/json",
     },
   }).catch((err) => console.log(err));
-  if (!itemById) return res.status(500).send("error");
+  if (!itemById) return res.status(404).send("Could not get item");
   return res.render("product", {
-    item: await itemById.json(),
     token: req.cookies?.token,
+    item: await itemById.json(),
   });
 });
 
 app.get("/login", (_req: Request, res: Response) => {
-  res.render("login");
+  res.render("login", {
+    backend_url: process.env.BACKEND_URL,
+  });
 });
 
 app.get("/logout", (_req: Request, res: Response) => {
@@ -68,7 +73,9 @@ app.get("/logout", (_req: Request, res: Response) => {
 });
 
 app.get("/register", (_req: Request, res: Response) => {
-  res.render("register");
+  res.render("register", {
+    backend_url: process.env.BACKEND_URL,
+  });
 });
 
 app.get("/register.js", (_req: Request, res: Response) => {
