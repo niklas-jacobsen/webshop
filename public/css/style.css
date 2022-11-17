@@ -58,54 +58,22 @@ a > li:hover {
   margin-bottom: 20px;
 }
 
-/* Phone */
-@media screen and (max-width: 600px) {
-  .item_box {
-    height: 200px;
-    width: 80vw;
-    color: black;
-    background-color: white;
-    border: 2px;
-    border-color: grey;
-    border-radius: 5px;
-    border-style: solid;
-    margin-bottom: 10px;
-  }
-}
-
-/* Tablet */
-@media screen and (max-width: 800px) {
-}
-
-/* Desktop */
-@media screen and (min-width: 800px) {
-  .navbar_inline {
-    margin-left: 10vw;
-    margin-right: 10vw;
-  }
-
-  .items_container {
-    margin-left: 10vw;
-    margin-right: 10vw;
-  }
-
-  .item_box {
-    height: 250px;
-    width: 200px;
-    color: black;
-    background-color: white;
-    border: 2px;
-    border-color: grey;
-    border-radius: 5px;
-    border-style: solid;
-    margin: 10px;
-  }
-}
-
 #items_list {
   list-style-type: none;
   display: flex;
   flex-wrap: wrap;
+}
+
+.item_box {
+  height: 250px;
+  width: 200px;
+  color: black;
+  background-color: white;
+  border: 2px;
+  border-color: grey;
+  border-radius: 5px;
+  border-style: solid;
+  margin: 10px;
 }
 
 .item_box:hover {
@@ -124,7 +92,10 @@ a > li:hover {
 .item_image_container {
   overflow: hidden;
   height: 140px;
-  padding-bottom: 15px;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin-bottom: 15px;
 }
 
 .item_image {
@@ -147,4 +118,68 @@ a > li:hover {
   padding-left: 5%;
   padding-bottom: 5px;
   margin: 0;
+}
+
+/* Desktop */
+@media screen and (min-width: 800px) {
+  .navbar_inline {
+    margin-left: 10vw;
+    margin-right: 10vw;
+  }
+
+  .items_container {
+    margin-left: 10vw;
+    margin-right: 10vw;
+  }
+}
+
+/* Tablet */
+@media screen and (max-width: 800px) {
+}
+
+/* Phone */
+@media screen and (max-width: 600px) {
+  .item_box {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    height: 170px;
+    width: 80vw;
+    color: black;
+    background-color: white;
+    border: 2px;
+    border-color: grey;
+    border-radius: 5px;
+    border-style: solid;
+    margin-bottom: 10px;
+  }
+
+  .item_title {
+    justify-content: center;
+    padding-top: 20px;
+    margin-top: 10px;
+  }
+
+  .item_image_container {
+    overflow: hidden;
+    height: inherit;
+    width: 80%;
+    order: -1;
+  }
+
+  .item_image {
+    width: auto;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+    margin: -0 auto;
+    object-position: center;
+  }
+
+  .item_price {
+    padding-right: 50%;
+    padding-bottom: 5%;
+    width: 95%;
+    margin-top: -60px;
+    margin-left: 90%;
+  }
 }

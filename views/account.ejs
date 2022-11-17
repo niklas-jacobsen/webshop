@@ -40,7 +40,7 @@
 
     <div
       style="
-        margin-top: 30vh;
+        margin-top: 10vh;
         margin-left: 20vw;
         margin-right: 20vw;
         padding: 25px;
@@ -50,9 +50,20 @@
     >
       <h1>Welcome, <%= user?.name?.first + " " + user?.name?.last + "!"%></h1>
 
-      <p>Your e-mail is <%= user?.email %></p>
+      <p>E-Mail: <%= user?.email %></p>
 
-      <p>Your user identification number is <%= user?.id %></p>
+      <p>User-ID: <%= user?.id %></p>
+
+      <% if(address) { %>
+
+      <h4>Your address information:</h4>
+
+      <p>Firstname: <%= address?.name.first %></p>
+      <p>Lastname: <%= address?.name.last %></p>
+      <p>Street: <%= address?.street %> Nr. <%= address?.number %></p>
+      <p>Zip-code: <%= address?.zipcode %></p>
+      <p>City: <%= address?.city %></p>
+      <% } %>
     </div>
   </body>
   <% } %>

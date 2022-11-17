@@ -44,10 +44,22 @@ app.get("/account", async (req: Request, res: Response) => {
       Authorization: "Bearer " + req.cookies?.token,
     },
   });
+
+  const userAddress = await fetch(process.env.BACKEND_URL + "/address/me", {
+    method: "get",
+    mode: "cors",
+    headers: {
+      "Content-Type": "text/json",
+      Authorization: "Bearer " + req.cookies?.token,
+    },
+  });
+
   if (!currentUser) return res.status(404).send("Could not get user");
+  if (!userAddress) return res.status(404).send("Could not get address");
   return res.render("account", {
     token: req.cookies?.token,
     user: await currentUser.json(),
+    address: await userAddress.json(),
     cart: JSON.parse(req.cookies?.cart || "[]"),
   });
 });
