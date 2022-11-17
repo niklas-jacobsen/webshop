@@ -109,6 +109,7 @@ app.get("/login", (req: Request, res: Response) => {
 
 app.get("/logout", (_req: Request, res: Response) => {
   res.clearCookie("token");
+  res.clearCookie("cart");
   res.redirect("/");
   res.end();
 });

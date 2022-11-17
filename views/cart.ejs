@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title><%= "Peter" %></title>
+    <title>Cart( <%= cart.length %> ) - Webshop</title>
     <% if(!token) { %>
     <meta http-equiv="refresh" content="0; url=/login" />
     <% } %>
@@ -35,11 +35,10 @@
     </header>
 
     <div class="items_container">
-      <% if(cart === "") { %>
-      <h2>Your cart is empty</h2>
+      <% if(cart == "") { %>
+      <h2 style="display: flex; justify-content: center">Your cart is empty</h2>
       <% } else { %>
-      <h2>Your cart:</h2>
-      <% } %>
+      <h2 style="display: flex; justify-content: center">Your cart</h2>
       <ul id="items_list">
         <% var totalAmount = 0.0; %> <% for(let i = 0; i < cart.length; i++) { var product = products.find((product) =>
         product.id === parseInt(cart[i])) %>
@@ -58,6 +57,11 @@
         Total amount: <%= totalAmount.toFixed(2) %>€
       </h4>
       <% } %>
+      <div style="display: flex; justify-content: center">
+        <button>Go to checkout</button>
+      </div>
+      <% } %>
+      <script type="text/javascript" src="../cart.js"></script>
     </div>
   </body>
 </html>

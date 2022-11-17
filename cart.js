@@ -5,6 +5,8 @@ async function addToCart(event, item) {
 
   itemsInCart.push(item.id);
 
-  //const response = await fetch(backend_url + "/item/")
   setCookie("cart", JSON.stringify(itemsInCart), 0.5);
 }
+
+//to be implemented
+async function sumbitOrder() {}
