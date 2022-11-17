@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <% if(token) { %>
+    <meta http-equiv="refresh" content="0; url=/login" />
+    <% } else { %>
     <title>Log In</title>
     <link rel="stylesheet" type="text/css" href="css/normalize.css" />
     <link rel="stylesheet" type="text/css" href="css/style.css" />
@@ -20,23 +26,28 @@
     </header>
 
     <div style="display: flex; justify-content: center; align-items: center; margin-top: 10%">
-      <form onsubmit="sendRegistration(event)">
-        <div>
-          <input placeholder="E-Mail" type="email" name="email" id="email_input" required />
-        </div>
-        <div>
-          <input placeholder="Firstname" type="text" name="firstName" id="firstName" required />
-        </div>
-        <div>
-          <input placeholder="Lastname" type="text" name="lastName" id="lastName" required />
-        </div>
-        <div>
-          <input placeholder="Password" type="password" name="password" id="password_input" required />
-        </div>
-        <input type="submit" value="Register" />
-      </form>
+      <div style="padding: 25px; background-color: turquoise; border-radius: 15px">
+        <h4 style="margin-top: 0px">Welcome!</h4>
+        <form onsubmit="sendRegistration(event), window.location">
+          <div class="input_field">
+            <input placeholder="E-Mail" type="email" name="email" id="email_input" required />
+          </div>
+          <div class="input_field">
+            <input placeholder="Firstname" type="text" name="firstName" id="firstName" required />
+          </div>
+          <div class="input_field">
+            <input placeholder="Lastname" type="text" name="lastName" id="lastName" required />
+          </div>
+          <div class="input_field">
+            <input placeholder="Password" type="password" name="password" id="password_input" required />
+          </div>
+          <input type="submit" value="Register" />
+        </form>
+      </div>
     </div>
   </body>
+
+  <% } %>
 
   <script>
     var backend_url = "<%= backend_url %>";

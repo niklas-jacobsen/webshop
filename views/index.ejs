@@ -21,7 +21,7 @@
             <li class="navbar_item">Webshop</li>
             <a href=""><li class="navbar_item active">Home</li></a>
             <a href="/account"><li class="navbar_item">Account</li></a>
-            <% if(token == null) { %>
+            <% if(!token) { %>
             <a href="/login"><li style="float: right" class="navbar_item">Log In</li></a>
             <% } else { %>
             <a href="/logout"><li style="float: right" class="navbar_item">Log Out</li></a>

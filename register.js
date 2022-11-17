@@ -15,7 +15,5 @@ async function sendRegistration(event) {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(values),
-  }).catch((err) => console.log(err));
-
-  console.log(await response.json());
+  }).catch((err) => console.error(err));
 }

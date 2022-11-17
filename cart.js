@@ -1,6 +1,5 @@
 async function addToCart(event, item) {
   event.preventDefault();
-  console.log(event);
 
   const itemsInCart = JSON.parse(getCookie("cart")) || [];
 

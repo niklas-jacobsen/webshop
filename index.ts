@@ -24,7 +24,7 @@ app.get("/", async (req: Request, res: Response) => {
     headers: {
       "Content-Type": "text/json",
     },
-  }).catch((err) => console.log(err));
+  }).catch((err) => console.error(err));
 
   if (!productList) return res.status(404).send("Could not load products");
 
@@ -64,9 +64,22 @@ app.get("/account", async (req: Request, res: Response) => {
   });
 });
 
-app.get("/cart", (req: Request, res: Response) => {
-  res.render("cart", {
+app.get("/cart", async (req: Request, res: Response) => {
+  const productList = await fetch(process.env.BACKEND_URL + "/products", {
+    method: "get",
+    mode: "cors",
+    headers: {
+      "Content-Type": "text/json",
+      Authorization: "Bearer " + req.cookies?.token,
+    },
+  }).catch((err) => console.error(err));
+
+  if (!productList) return res.status(404).send("Could not load products");
+
+  return res.render("cart", {
     token: req.cookies?.token,
+    products: await productList.json(),
+    cart: JSON.parse(req.cookies?.cart || "[]"),
   });
 });
 
@@ -77,7 +90,7 @@ app.get("/item/:id", async (req: Request, res: Response) => {
     headers: {
       "Content-Type": "text/json",
     },
-  }).catch((err) => console.log(err));
+  }).catch((err) => console.error(err));
   if (!itemById) return res.status(404).send("Could not get item");
   return res.render("product", {
     token: req.cookies?.token,
@@ -87,9 +100,10 @@ app.get("/item/:id", async (req: Request, res: Response) => {
   });
 });
 
-app.get("/login", (_req: Request, res: Response) => {
+app.get("/login", (req: Request, res: Response) => {
   res.render("login", {
     backend_url: process.env.BACKEND_URL,
+    token: req.cookies?.token,
   });
 });
 
@@ -99,16 +113,12 @@ app.get("/logout", (_req: Request, res: Response) => {
   res.end();
 });
 
-app.get("/register", (_req: Request, res: Response) => {
+app.get("/register", (req: Request, res: Response) => {
   res.render("register", {
     backend_url: process.env.BACKEND_URL,
+    token: req.cookies?.token,
   });
 });
-
-// app.get("/favicon.ico", (_req: Request, res: Response) => {
-//   var favicon = fs.readFileSync("favicon.ico");
-//   res.send(favicon);
-// });
 
 app.get("/register.js", (_req: Request, res: Response) => {
   var js = fs.readFileSync("register.js", "utf-8");
@@ -135,5 +145,5 @@ app.get("/helpers/cookieHelper.js", (_req: Request, res: Response) => {
 });
 
 app.listen(port, () => {
-  console.log(`App running on port ${port}`);
+  console.info(`App running on port ${port}`);
 });

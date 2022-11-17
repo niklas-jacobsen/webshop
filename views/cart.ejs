@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title><%= "Peter" %></title>
-    <% if(token == null) { %>
+    <% if(!token) { %>
     <meta http-equiv="refresh" content="0; url=/login" />
     <% } %>
     <link rel="stylesheet" type="text/css" href="../css/normalize.css" />
@@ -24,7 +24,7 @@
             <li class="navbar_item">Webshop</li>
             <a href="/"><li class="navbar_item">Home</li></a>
             <a href="/account"><li class="navbar_item">Account</li></a>
-            <% if(token == null) { %>
+            <% if(!token) { %>
             <a href="/login"><li style="float: right" class="navbar_item">Log In</li></a>
             <% } else { %>
             <a href="/logout"><li style="float: right" class="navbar_item">Log Out</li></a>
@@ -33,5 +33,31 @@
         </ul>
       </div>
     </header>
+
+    <div class="items_container">
+      <% if(cart === "") { %>
+      <h2>Your cart is empty</h2>
+      <% } else { %>
+      <h2>Your cart:</h2>
+      <% } %>
+      <ul id="items_list">
+        <% var totalAmount = 0.0; %> <% for(let i = 0; i < cart.length; i++) { var product = products.find((product) =>
+        product.id === parseInt(cart[i])) %>
+        <li>
+          <div class="item_box" id="<%= i %>" onclick="window.location='/item/<%= product.id %>'">
+            <h3 class="item_title"><%= product.name %></h3>
+            <div class="item_image_container" style="background-image: url('<%= product.image_url %>')"></div>
+            <h4 class="item_price"><%= product.price %> €</h4>
+          </div>
+          <% totalAmount += parseFloat(product.price); %>
+        </li>
+        <% } %>
+      </ul>
+      <% if(totalAmount > 0) { %>
+      <h4 style="display: flex; justify-content: center; margin-top: 40px">
+        Total amount: <%= totalAmount.toFixed(2) %>€
+      </h4>
+      <% } %>
+    </div>
   </body>
 </html>

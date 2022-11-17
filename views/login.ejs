@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <% if(token) { %>
+    <meta http-equiv="refresh" content="0; url=/" />
+    <% } else { %>
     <title>Log In</title>
     <link rel="stylesheet" type="text/css" href="css/normalize.css" />
     <link rel="stylesheet" type="text/css" href="css/style.css" />
@@ -37,6 +43,8 @@
       If you do not have an account yet you can click&nbsp;<a href="./register">here</a>
     </p>
   </body>
+
+  <% } %>
   <script>
     var backend_url = "<%= backend_url %>";
   </script>
