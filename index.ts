@@ -121,6 +121,11 @@ app.get("/register", (req: Request, res: Response) => {
   });
 });
 
+app.get("/favicon.ico", (_req: Request, res: Response) => {
+  var favicon = fs.readFileSync("favicon.ico", "utf-8");
+  res.send(favicon);
+});
+
 app.get("/register.js", (_req: Request, res: Response) => {
   var js = fs.readFileSync("register.js", "utf-8");
   res.setHeader("content-type", "text/javascript");
