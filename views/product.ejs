@@ -15,6 +15,14 @@
 
   <body>
     <header>
+      <script>
+        const product = {
+          id: "<%= item.id %>",
+          name: "<%= item.name %>",
+          price: "<%= item.price %>",
+          image_url: "<%= item.image_url %>",
+        };
+      </script>
       <div>
         <ul class="navbar">
           <div class="navbar_inline">
@@ -28,7 +36,9 @@
             <a href="/cart">
               <li style="float: right" class="navbar_item cart_icon">
                 <span class="material-symbols-outlined"> shopping_bag </span>
-                <span class="cart_badge" id="cartCount"> 5 </span>
+                <% if(cart?.length > 0 ) { %>
+                <span class="cart_badge" id="cartCount"> <%= cart?.length %> </span>
+                <% } %>
               </li>
             </a>
             <% } %>
@@ -43,7 +53,7 @@
         <p style="text-align: center; margin-top: 10px; margin-left: 20%; margin-right: 20%"><%= item.description %></p>
         <p>In Stock: <%= item.stock %></p>
         <h4><%= item.price %> €</h4>
-        <button>Add to cart</button>
+        <button onclick="addToCart(event, product), window.location.reload()">Add to cart</button>
       </div>
       <div style="display: flex; justify-content: center; align-items: center">
         <div style="height: 420px; margin-right: 10%; overflow: hidden">
@@ -52,4 +62,6 @@
       </div>
     </div>
   </body>
+  <script type="text/javascript" src="../helpers/cookieHelper.js"></script>
+  <script type="text/javascript" src="../cart.js"></script>
 </html>

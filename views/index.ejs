@@ -13,7 +13,7 @@
     />
   </head>
 
-  <body>
+  <body style="display: flex; flex-flow: column; height: 100%">
     <header>
       <div>
         <ul class="navbar">
@@ -28,7 +28,9 @@
             <a href="/cart">
               <li style="float: right" class="navbar_item cart_icon">
                 <span class="material-symbols-outlined"> shopping_bag </span>
-                <span class="cart_badge" id="cartCount"> 5 </span>
+                <% if(cart?.length > 0 ) { %>
+                <span class="cart_badge" id="cartCount"> <%= cart?.length %> </span>
+                <% } %>
               </li>
             </a>
             <% } %>
@@ -37,20 +39,22 @@
       </div>
     </header>
 
-    <ul id="items_list">
-      <% for(let i = 0; i < products.length; i++) { %>
-      <li>
-        <div class="item_box" id="<%= i %>" onclick="window.location='/item/<%= products[i].id %>';">
-          <h3 class="item_title"><%= products[i].name %></h3>
-          <div class="item_image_container">
-            <img class="item_image" src="<%= products[i].image_url %>" />
+    <div>
+      <ul id="items_list">
+        <% for(let i = 0; i < products.length; i++) { %>
+        <li>
+          <div class="item_box" id="<%= i %>" onclick="window.location='/item/<%= products[i].id %>';">
+            <h3 class="item_title"><%= products[i].name %></h3>
+            <div class="item_image_container">
+              <img class="item_image" src="<%= products[i].image_url %>" />
+            </div>
+            <!-- <p class="item_description"><%# products[i].description %></p> -->
+            <h4 class="item_price"><%= products[i].price %> €</h4>
           </div>
-          <!-- <p class="item_description"><%# products[i].description %></p> -->
-          <h4 class="item_price"><%= products[i].price %> €</h4>
-        </div>
-      </li>
-      <% } %>
-    </ul>
+        </li>
+        <% } %>
+      </ul>
+    </div>
     <footer></footer>
   </body>
 

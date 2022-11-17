@@ -67,9 +67,6 @@ a > li:hover {
   list-style-type: none;
   display: flex;
   flex-wrap: wrap;
-  margin-top: 2vw;
-  margin-left: 7vw;
-  margin-right: 7vw;
 }
 
 .item_box {

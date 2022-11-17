@@ -17,6 +17,25 @@ function getCookie(name) {
   }
   return null;
 }
+
+function returnAllCookies() {
+  return document.cookie;
+}
+
+function getCookieAsArray(name) {
+  var nameEQ = name + "=";
+  var splitCookie = document.cookie.split(";");
+  for (var i = 0; i < splitCookie.length; i++) {
+    var cookie = splitCookie[i];
+    while (cookie.charAt(0) == " ") cookie = cookie.substring(1, cookie.length);
+    if (cookie.indexOf(nameEQ) == 0) {
+      var itemIdList = cookie.substring(nameEQ.length, cookie.length);
+      return JSON.parse(itemIdList);
+    }
+  }
+  return null;
+}
+
 function eraseCookie(name) {
   document.cookie = name + "=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;";
 }

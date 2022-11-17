@@ -4,7 +4,7 @@
     <title>Account</title>
     <% if(token == null) { %>
     <meta http-equiv="refresh" content="0; url=/login" />
-    <% } %>
+    <% } else { %>
     <link rel="stylesheet" href="css/normalize.css" />
     <link rel="stylesheet" href="css/style.css" />
     <link
@@ -27,7 +27,9 @@
             <a href="/cart">
               <li style="float: right" class="navbar_item cart_icon">
                 <span class="material-symbols-outlined"> shopping_bag </span>
-                <span class="cart_badge" id="cartCount"> 5 </span>
+                <% if(cart?.length > 0 ) { %>
+                <span class="cart_badge" id="cartCount"> <%= cart?.length %> </span>
+                <% } %>
               </li>
             </a>
             <% } %>
@@ -53,4 +55,5 @@
       <p>Your user identification number is <%= user?.id %></p>
     </div>
   </body>
+  <% } %>
 </html>

@@ -28,6 +28,7 @@ app.get("/", async (req: Request, res: Response) => {
   return res.render("index", {
     token: req.cookies?.token,
     products: await productList.json(),
+    cart: JSON.parse(req.cookies?.cart || "[]"),
   });
 });
 
@@ -44,6 +45,7 @@ app.get("/account", async (req: Request, res: Response) => {
   return res.render("account", {
     token: req.cookies?.token,
     user: await currentUser.json(),
+    cart: JSON.parse(req.cookies?.cart || "[]"),
   });
 });
 
@@ -65,6 +67,8 @@ app.get("/item/:id", async (req: Request, res: Response) => {
   return res.render("product", {
     token: req.cookies?.token,
     item: await itemById.json(),
+    backend_url: process.env.BACKEND_URL,
+    cart: JSON.parse(req.cookies?.cart || "[]"),
   });
 });
 
@@ -94,6 +98,12 @@ app.get("/register.js", (_req: Request, res: Response) => {
 
 app.get("/login.js", (_req: Request, res: Response) => {
   var js = fs.readFileSync("login.js", "utf-8");
+  res.setHeader("content-type", "text/javascript");
+  res.send(js);
+});
+
+app.get("/cart.js", (_req: Request, res: Response) => {
+  var js = fs.readFileSync("cart.js", "utf-8");
   res.setHeader("content-type", "text/javascript");
   res.send(js);
 });
