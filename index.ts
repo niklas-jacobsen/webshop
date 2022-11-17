@@ -2,6 +2,8 @@ import "reflect-metadata";
 import { Request, Response } from "express";
 
 const express = require("express");
+const favicon = require("serve-favicon");
+const path = require("path");
 const fs = require("fs");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
@@ -10,6 +12,7 @@ const port = process.env.PORT || 3000;
 require("dotenv").config();
 
 app.use(express.static(__dirname + "/public"));
+app.use(favicon(path.join(__dirname, "favicon.ico")));
 app.use(cookieParser());
 app.use(cors());
 app.set("view engine", "ejs");
@@ -89,6 +92,11 @@ app.get("/register", (_req: Request, res: Response) => {
     backend_url: process.env.BACKEND_URL,
   });
 });
+
+// app.get("/favicon.ico", (_req: Request, res: Response) => {
+//   var favicon = fs.readFileSync("favicon.ico");
+//   res.send(favicon);
+// });
 
 app.get("/register.js", (_req: Request, res: Response) => {
   var js = fs.readFileSync("register.js", "utf-8");

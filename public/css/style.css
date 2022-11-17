@@ -39,11 +39,6 @@ a > li:hover {
   background-color: dimgrey;
 }
 
-.navbar_inline {
-  margin-left: 10vw;
-  margin-right: 10vw;
-}
-
 .cart_icon {
   padding: 9px 12px;
 }
@@ -63,22 +58,54 @@ a > li:hover {
   margin-bottom: 20px;
 }
 
+/* Phone */
+@media screen and (max-width: 600px) {
+  .item_box {
+    height: 200px;
+    width: 80vw;
+    color: black;
+    background-color: white;
+    border: 2px;
+    border-color: grey;
+    border-radius: 5px;
+    border-style: solid;
+    margin-bottom: 10px;
+  }
+}
+
+/* Tablet */
+@media screen and (max-width: 800px) {
+}
+
+/* Desktop */
+@media screen and (min-width: 800px) {
+  .navbar_inline {
+    margin-left: 10vw;
+    margin-right: 10vw;
+  }
+
+  .items_container {
+    margin-left: 10vw;
+    margin-right: 10vw;
+  }
+
+  .item_box {
+    height: 250px;
+    width: 200px;
+    color: black;
+    background-color: white;
+    border: 2px;
+    border-color: grey;
+    border-radius: 5px;
+    border-style: solid;
+    margin: 10px;
+  }
+}
+
 #items_list {
   list-style-type: none;
   display: flex;
   flex-wrap: wrap;
-}
-
-.item_box {
-  height: 250px;
-  width: 200px;
-  color: black;
-  background-color: white;
-  border: 2px;
-  border-color: grey;
-  border-radius: 5px;
-  border-style: solid;
-  margin: 10px;
 }
 
 .item_box:hover {
