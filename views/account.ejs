@@ -2,24 +2,55 @@
 <html>
   <head>
     <title>Account</title>
+    <% if(token == null) { %>
+    <meta http-equiv="refresh" content="0; url=/login" />
+    <% } %>
     <link rel="stylesheet" href="css/normalize.css" />
     <link rel="stylesheet" href="css/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+    />
   </head>
   <body>
     <header>
       <div>
-        <!-- <h1 style="display: inline">Webshop</h1> -->
         <ul class="navbar">
-          <li class="navbar_item">Webshop</li>
-          <a href="/"><li class="navbar_item">Home</li></a>
-          <a href=""><li class="navbar_item active">Account</li></a>
-          <% if(token == null) { %>
-          <a href="/login"><li style="float: right" class="navbar_item">Log In</li></a>
-          <% } else { %>
-          <a href="/logout"><li style="float: right" class="navbar_item">Log Out</li></a>
-          <% } %>
+          <div class="navbar_inline">
+            <li class="navbar_item">Webshop</li>
+            <a href="/"><li class="navbar_item">Home</li></a>
+            <a href=""><li class="navbar_item active">Account</li></a>
+            <% if(token == null) { %>
+            <a href="/login"><li style="float: right" class="navbar_item">Log In</li></a>
+            <% } else { %>
+            <a href="/logout"><li style="float: right" class="navbar_item">Log Out</li></a>
+            <a href="/cart">
+              <li style="float: right" class="navbar_item cart_icon">
+                <span class="material-symbols-outlined"> shopping_bag </span>
+                <span class="cart_badge" id="cartCount"> 5 </span>
+              </li>
+            </a>
+            <% } %>
+          </div>
         </ul>
       </div>
     </header>
+
+    <div
+      style="
+        margin-top: 30vh;
+        margin-left: 20vw;
+        margin-right: 20vw;
+        padding: 25px;
+        background-color: turquoise;
+        border-radius: 15px;
+      "
+    >
+      <h1>Welcome, <%= user?.name?.first + " " + user?.name?.last + "!"%></h1>
+
+      <p>Your e-mail is <%= user?.email %></p>
+
+      <p>Your user identification number is <%= user?.id %></p>
+    </div>
   </body>
 </html>

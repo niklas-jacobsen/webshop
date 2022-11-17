@@ -6,15 +6,15 @@
     <link rel="stylesheet" type="text/css" href="css/style.css" />
   </head>
 
-
   <body>
     <header>
       <div>
-        <!-- <h1 style="display: inline">Webshop</h1> -->
         <ul class="navbar">
-          <li class="navbar_item">Webshop</li>
-          <a href="/"><li class="navbar_item">Home</li></a>
-          <a href="/account"><li class="navbar_item">Account</li></a>
+          <div class="navbar_inline">
+            <li class="navbar_item">Webshop</li>
+            <a href="/"><li class="navbar_item">Home</li></a>
+            <a href="/account"><li class="navbar_item">Account</li></a>
+          </div>
         </ul>
       </div>
     </header>
@@ -22,22 +22,24 @@
     <div style="display: flex; justify-content: center; align-items: center; margin-top: 10%">
       <form onsubmit="sendRegistration(event)">
         <div>
-          <input placeholder="E-Mail" type="email" name="email" id="email_input" required/>
+          <input placeholder="E-Mail" type="email" name="email" id="email_input" required />
         </div>
         <div>
-          <input placeholder="Firstname" type="text" name="firstName" id="firstName" required/>
+          <input placeholder="Firstname" type="text" name="firstName" id="firstName" required />
         </div>
         <div>
-          <input placeholder="Lastname" type="text" name="lastName" id="lastName" required/>
+          <input placeholder="Lastname" type="text" name="lastName" id="lastName" required />
         </div>
         <div>
-          <input placeholder="Password" type="password" name="password" id="password_input" required/>
+          <input placeholder="Password" type="password" name="password" id="password_input" required />
         </div>
-        <input type="submit" value="Register"></input>
+        <input type="submit" value="Register" />
       </form>
     </div>
   </body>
 
-  <script>var backend_url = "<%= backend_url %>" </script>
+  <script>
+    var backend_url = "<%= backend_url %>";
+  </script>
   <script type="text/javascript" src="./register.js"></script>
 </html>

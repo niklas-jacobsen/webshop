@@ -39,15 +39,37 @@ a > li:hover {
   background-color: dimgrey;
 }
 
+.navbar_inline {
+  margin-left: 10vw;
+  margin-right: 10vw;
+}
+
+.cart_icon {
+  padding: 9px 12px;
+}
+
+#cartCount {
+  font-size: 12px;
+  vertical-align: top;
+  margin-left: -4px;
+}
+
 .active {
   background-color: dimgrey;
   cursor: default;
+}
+
+.input_field {
+  margin-bottom: 20px;
 }
 
 #items_list {
   list-style-type: none;
   display: flex;
   flex-wrap: wrap;
+  margin-top: 2vw;
+  margin-left: 7vw;
+  margin-right: 7vw;
 }
 
 .item_box {

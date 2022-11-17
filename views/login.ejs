@@ -9,31 +9,37 @@
   <body>
     <header>
       <div>
-        <!-- <h1 style="display: inline">Webshop</h1> -->
         <ul class="navbar">
-          <li class="navbar_item">Webshop</li>
-          <a href="/"><li class="navbar_item">Home</li></a>
-          <a href="/account"><li class="navbar_item">Account</li></a>
+          <div class="navbar_inline">
+            <li class="navbar_item">Webshop</li>
+            <a href="/"><li class="navbar_item">Home</li></a>
+            <a href="/account"><li class="navbar_item">Account</li></a>
+          </div>
         </ul>
       </div>
     </header>
 
     <div style="display: flex; justify-content: center; align-items: center; margin-top: 10%">
-      <form onsubmit="sendLogin(event)">
-        <div>
-          <input placeholder="E-Mail" type="email" name="email" id="email_input" required />
-        </div>
-        <div>
-          <input placeholder="Password" type="password" name="password" id="password_input" required />
-        </div>
-        <input type="submit" value="Login"></input>
-      </form>
+      <div style="padding: 25px; background-color: turquoise; border-radius: 15px">
+        <h4 style="margin-top: 0px">Welcome!</h4>
+        <form onsubmit="sendLogin(event)">
+          <div class="input_field">
+            <input placeholder="E-Mail" type="email" name="email" id="email_input" required />
+          </div>
+          <div class="input_field">
+            <input placeholder="Password" type="password" name="password" id="password_input" required />
+          </div>
+          <input type="submit" value="Login" style="float: right; width: 80px" />
+        </form>
+      </div>
     </div>
     <p style="display: flex; justify-content: center">
       If you do not have an account yet you can click&nbsp;<a href="./register">here</a>
     </p>
   </body>
-  <script>var backend_url = "<%= backend_url %>" </script>
+  <script>
+    var backend_url = "<%= backend_url %>";
+  </script>
   <script type="text/javascript" src="./helpers/cookieHelper.js"></script>
   <script type="text/javascript" src="./login.js"></script>
 </html>

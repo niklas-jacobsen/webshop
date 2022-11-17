@@ -9,15 +9,9 @@ const app = express();
 const port = process.env.PORT || 3000;
 require("dotenv").config();
 
-// function hallo(_req: Request, res: Response) {
-//   let test = 10;
-//   res.locals.test = test;
-// }
-
 app.use(express.static(__dirname + "/public"));
 app.use(cookieParser());
 app.use(cors());
-// app.use("/product", hallo);
 app.set("view engine", "ejs");
 
 app.get("/", async (req: Request, res: Response) => {
@@ -29,8 +23,6 @@ app.get("/", async (req: Request, res: Response) => {
     },
   }).catch((err) => console.log(err));
 
-  console.log(process.env.BACKEND_URL + "/products");
-
   if (!productList) return res.status(404).send("Could not load products");
 
   return res.render("index", {
@@ -39,8 +31,24 @@ app.get("/", async (req: Request, res: Response) => {
   });
 });
 
-app.get("/account", (req: Request, res: Response) => {
-  res.render("account", {
+app.get("/account", async (req: Request, res: Response) => {
+  const currentUser = await fetch(process.env.BACKEND_URL + "/user/me", {
+    method: "get",
+    mode: "cors",
+    headers: {
+      "Content-Type": "text/json",
+      Authorization: "Bearer " + req.cookies?.token,
+    },
+  });
+  if (!currentUser) return res.status(404).send("Could not get user");
+  return res.render("account", {
+    token: req.cookies?.token,
+    user: await currentUser.json(),
+  });
+});
+
+app.get("/cart", (req: Request, res: Response) => {
+  res.render("cart", {
     token: req.cookies?.token,
   });
 });
