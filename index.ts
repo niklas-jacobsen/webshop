@@ -21,9 +21,6 @@ app.get("/", async (req: Request, res: Response) => {
   const productList = await fetch(process.env.BACKEND_URL + "/products", {
     method: "get",
     mode: "cors",
-    headers: {
-      "Content-Type": "text/json",
-    },
   }).catch((err) => console.error(err));
 
   if (!productList) return res.status(404).send("Could not load products");

@@ -45,10 +45,7 @@
         <li>
           <div class="item_box" id="<%= i %>" onclick="window.location='/item/<%= products[i].id %>';">
             <h3 class="item_title"><%= products[i].name %></h3>
-            <div class="item_image_container" style="background-image: url('<%= products[i].image_url %>')">
-              <!-- <img class="item_image" src="<%# products[i].image_url %>" /> -->
-            </div>
-            <!-- <p class="item_description"><%# products[i].description %></p> -->
+            <div class="item_image_container" style="background-image: url('<%= products[i].image_url %>')"></div>
             <h4 class="item_price"><%= products[i].price %> €</h4>
           </div>
         </li>
@@ -57,6 +54,5 @@
     </div>
     <footer></footer>
   </body>
-
   <script src="/helpers/cookieHelper.js"></script>
 </html>
