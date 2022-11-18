@@ -5,7 +5,7 @@ async function sendLogin(event) {
     password: event.target.password.value,
   };
 
-  const response = await fetch(process.env.BACKEND_URL + "/login", {
+  const response = await fetch(backend_url + "/login", {
     method: "post",
     mode: "cors",
     headers: {
