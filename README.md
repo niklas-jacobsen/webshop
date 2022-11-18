@@ -39,7 +39,7 @@ Media queries are used to ensure that the item lists on the home page and in the
 
 ### Login and Register
 
-Users can create an account on `/register` by entering their first-, lastname, email and password.
+Users can create an account on `/register` by entering their first name, last name, email and password.
 Logging in is done via `/login`.
 
 This project uses [bcrypt](https://www.npmjs.com/package/bcrypt) to ensure that when a new user registers an account his password is hashed before it is stored in the user database. After logging in, a token is created using [jsonwebtoken](https://jwt.io/) ([JWT on npm](https://www.npmjs.com/package/jsonwebtoken)) and then stored in a cookie which gets sent with every request to keep the user logged in until the token expires.
