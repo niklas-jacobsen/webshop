@@ -16,4 +16,6 @@ async function sendRegistration(event) {
     },
     body: JSON.stringify(values),
   }).catch((err) => console.error(err));
+
+  window.location = "/login";
 }
